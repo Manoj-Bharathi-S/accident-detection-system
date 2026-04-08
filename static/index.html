@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Detection Dashboard</title>
+    <!-- Use Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="logo-area">
+                <div class="pulse-ring"></div>
+                <h1>Live Detection System</h1>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span>System Active</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Top Metrics -->
+            <section class="metrics-grid">
+                <div class="metric-card glass">
+                    <h3>Total Accidents</h3>
+                    <div class="metric-value" id="total-count">0</div>
+                </div>
+                <div class="metric-card glass">
+                    <h3>High Severity</h3>
+                    <div class="metric-value high-severity" id="high-sev-count">0</div>
+                </div>
+                <div class="metric-card glass">
+                    <h3>Latest Incident</h3>
+                    <div class="metric-value latest-time" id="latest-time">--:--:--</div>
+                </div>
+            </section>
+
+            <!-- Middle Section: Chart & Recent Logs -->
+            <section class="data-section">
+                <div class="chart-container glass">
+                    <h3>Severity Distribution</h3>
+                    <canvas id="severityChart"></canvas>
+                </div>
+
+                <div class="table-container glass">
+                    <h3>Recent Incident Logs</h3>
+                    <table id="logsTable">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Severity</th>
+                                <th>Cause</th>
+                                <th>Location (Lat, Lng)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

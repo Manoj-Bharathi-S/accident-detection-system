@@ -48,9 +48,13 @@ def main():
                 for box, obj_id in zip(boxes, ids):
                     current_objects[obj_id] = box
                     speed = 0
+                    max_speed = 0
                     if obj_id in history:
                         speed = calculate_speed(history[obj_id][0], box)
-                    history[obj_id] = (box, speed)
+                        # Retain the highest speed recorded for this object
+                        prev_max = history[obj_id][2] if len(history[obj_id]) > 2 else speed
+                        max_speed = max(prev_max, speed)
+                    history[obj_id] = (box, speed, max_speed)
                     
                     # Draw Box
                     x1, y1, x2, y2 = map(int, box)
@@ -78,8 +82,9 @@ def main():
                             if collision_matrix[pair] >= COLLISION_FRAME_OVERLAP and pair not in logged_collisions:
                                 # A confirmed collision occurred!
                                 logged_collisions.add(pair)
-                                speed1 = history[id1][1]
-                                speed2 = history[id2][1]
+                                # Use max_speed recorded before impact for severity logic
+                                speed1 = history[id1][2] if len(history[id1]) > 2 else history[id1][1]
+                                speed2 = history[id2][2] if len(history[id2]) > 2 else history[id2][1]
                                 
                                 severity = estimate_severity(speed1, speed2)
                                 cause = infer_cause(speed1, speed2)

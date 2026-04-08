@@ -29,18 +29,18 @@ def estimate_severity(speed1, speed2):
     # Simple rule based logic for prototype
     avg_speed = (speed1 + speed2) / 2
     
-    if avg_speed > 30:
+    if avg_speed > 10:
         return "HIGH"
-    elif avg_speed > 15:
+    elif avg_speed > 4:
         return "MEDIUM"
     else:
         return "LOW"
         
 def infer_cause(speed1, speed2):
     avg_speed = (speed1 + speed2) / 2
-    if avg_speed > 30:
+    if avg_speed > 10:
         return "Over-speeding"
-    elif abs(speed1 - speed2) > 20: # High relative delta
+    elif abs(speed1 - speed2) > 5: # High relative delta
         return "Sudden Braking / Speed Mismatch"
     else:
         return "Poor Visibility / Distraction"

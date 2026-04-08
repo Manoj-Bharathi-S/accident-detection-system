@@ -9,3 +9,5 @@ logs
 test_email.py
 data
 .env
+src/__pycache__/
+__pycache__/
