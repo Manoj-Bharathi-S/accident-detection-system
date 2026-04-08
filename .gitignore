@@ -1,0 +1,11 @@
+.env.example
+a.py
+implementation_plan.md
+project.md
+task.md
+walkthrough.md
+.venv
+logs
+test_email.py
+data
+.env
